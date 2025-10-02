@@ -307,7 +307,6 @@ export function categoryContribution(lines: OrderLine[]) {
 
 export function ordersTrend(orders: Order[], days: number = 30) {
   const endDate = new Date();
-  const _startDate = subDays(endDate, days);
   
   const trend = new Map<string, { orders: number; value: number }>();
   

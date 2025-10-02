@@ -105,7 +105,7 @@ export function seedPaymentTransactions(count: number = 1000): PaymentTransactio
       paidAmount: status === "Successful" ? amount : 0,
       customerFee: 0,
       merchantFee: Math.round(amount * 0.002), // 0.2% merchant fee
-      vendorTransactionRef: `VPAY${faker.number.int({ min: 100000000000000000000000000, max: 999999999999999999999999999 })}`,
+      vendorTransactionRef: `VPAY${faker.string.numeric(27)}`,
       paymentProvider: bank.providerCode,
       applicationId: 2,
       paymentDate: formatISO(paymentDate),
@@ -115,7 +115,7 @@ export function seedPaymentTransactions(count: number = 1000): PaymentTransactio
       bankName: bank.bankName.split(" ")[0] + " " + bank.bankName.split(" ")[1], // Extract bank name
       bankDescription: bank.bankName,
       invoiceCreated: status === "Successful",
-      invoiceNumber: faker.helpers.maybe(() => `INV${faker.number.int({ min: 100000, max: 999999 })}`, { probability: 0.8 }),
+      invoiceNumber: faker.helpers.maybe(() => `INV${faker.number.int({ min: 100000, max: 999999 })}`, { probability: 0.8 }) || "N/A",
       processed: status === "Successful",
       processedDate: status === "Successful" ? formatISO(paymentDate) : null,
       navisionProcessed: status === "Successful",
