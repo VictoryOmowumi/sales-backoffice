@@ -1,5 +1,4 @@
 import * as React from "react";
-import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
@@ -12,7 +11,7 @@ import { ChevronDown, CalendarIcon, Check, X, Save, Eye, Trash2 } from "lucide-r
 import { useFilters } from "@/store/filters";
 import { presets, fmtRangeLabel, getPreviousPeriod } from "@/lib/period";
 import { REGIONS, CHANNELS, BRANDS, SIZE_OPTIONS } from "@/constants/filters";
-import type { PeriodRange } from "@/types/filters";
+import type { FiltersState, SizeMode } from "@/types/filter";
 import { cn } from "@/lib/utils";
 
 function DateRangePicker() {
@@ -134,7 +133,7 @@ function SelectCommand({
 export default function GlobalFilterBar() {
   const {
     period, comparePrev, region, channel, brand, size,
-    setPeriod, setComparePrev, setRegion, setChannel, setBrand, setSize,
+    setComparePrev, setRegion, setChannel, setBrand, setSize,
     reset, views, saveView, applyView, deleteView
   } = useFilters();
 
@@ -163,7 +162,7 @@ export default function GlobalFilterBar() {
         {/* Size */}
         <RadioGroup
           value={size}
-          onValueChange={(v) => setSize(v as any)}
+          onValueChange={(v: string) => setSize(v as SizeMode)}
           className="flex items-center gap-2 ml-auto"
         >
           {SIZE_OPTIONS.map((s) => (
@@ -206,9 +205,9 @@ export default function GlobalFilterBar() {
           <>
             <Separator className="mx-2 h-4" orientation="vertical" />
             <span className="text-xs text-muted-foreground">Views:</span>
-            {views.map((v) => (
+            {views.map((v: { name: string; filters: FiltersState }) => (
               <span key={v.name} className="inline-flex items-center gap-1">
-                <Button size="xs" variant="outline" onClick={() => applyView(v.name)}>
+                <Button size="sm" variant="outline" onClick={() => applyView(v.name)}>
                   <Eye className="size-3 mr-1" /> {v.name}
                 </Button>
                 <button

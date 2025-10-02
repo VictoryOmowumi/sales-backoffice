@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { execData } from "@/data/exec.mock";
 import { useCompare } from "@/store/compare";
 import { useExecFilters } from "@/store/filters.exec";
-import { endOfMonth, isAfter, isBefore, parse, parseISO } from "date-fns";
+import {  parseISO } from "date-fns";
 
 const REGION_FACTOR: Record<string, number> = {
   All: 1, Abuja: 1.09, Kano: 0.94, Kaduna: 0.96, Aba: 0.92, Enugu: 0.95, Benin: 0.88, Ibadan: 1.03, Ilorin: 0.91, Ikeja: 1.15,
@@ -11,10 +11,6 @@ const CHANNEL_FACTOR: Record<string, number> = {
   All: 1, "Modern Trade": 1.04, "General Trade": 0.96, HORECA: 1.06, "E-Commerce": 1.03,
 };
 
-function inRange(ym: string, fromYm: string, toYm: string) {
-  const d = parse(ym, "yyyy-MMM", new Date()); // we’ll never hit this path; see map below
-  return true;
-}
 
 /** convert "Mar" aligned items to "YYYY-MM" for the selected range */
 function monthKey(year: number, short: string) {

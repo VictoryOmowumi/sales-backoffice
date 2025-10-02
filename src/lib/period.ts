@@ -1,5 +1,5 @@
-import { addDays, differenceInCalendarDays, format, subDays } from "date-fns";
-import type { PeriodRange } from "@/types/filters";
+import {differenceInCalendarDays, format, subDays } from "date-fns";
+import type { PeriodRange } from "@/types/filter";
 
 export const fmtRangeLabel = (p: PeriodRange) => {
   const from = new Date(p.from);

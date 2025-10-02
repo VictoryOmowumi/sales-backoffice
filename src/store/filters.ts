@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { FiltersState, PeriodRange, SizeMode } from "@/types/filters";
+import type { FiltersState, PeriodRange, SizeMode } from "@/types/filter";
 import { getDefaultPeriod, clampToToday } from "@/lib/period";
 
 type View = { name: string; filters: FiltersState };
@@ -34,26 +34,26 @@ export const useFilters = create<FiltersStore>()(
     (set, get) => ({
       ...initial,
 
-      setPeriod: (p) => set({ period: clampToToday(p) }),
-      setComparePrev: (v) => set({ comparePrev: v }),
-      setRegion: (v) => set({ region: v }),
-      setChannel: (v) => set({ channel: v }),
-      setBrand: (v) => set({ brand: v }),
-      setSize: (v) => set({ size: v }),
+      setPeriod: (p: PeriodRange) => set({ period: clampToToday(p) }),
+      setComparePrev: (v: boolean) => set({ comparePrev: v }),
+      setRegion: (v: string | null) => set({ region: v }),
+      setChannel: (v: string | null) => set({ channel: v }),
+      setBrand: (v: string | null) => set({ brand: v }),
+      setSize: (v: SizeMode) => set({ size: v }),
       reset: () => set(initial),
 
       views: [],
-      saveView: (name) => {
+      saveView: (name: string) => {
         const { views, ...filters } = get();
         const next: View = { name, filters: { ...filters } as FiltersState };
-        set({ views: [next, ...views.filter(v => v.name !== name)] });
+        set({ views: [next, ...views.filter((v: View) => v.name !== name)] });
       },
-      applyView: (name) => {
-        const v = get().views.find(v => v.name === name);
+      applyView: (name: string) => {
+        const v = get().views.find((v: View) => v.name === name);
         if (!v) return;
         set({ ...v.filters });
       },
-      deleteView: (name) => set({ views: get().views.filter(v => v.name !== name) }),
+      deleteView: (name: string) => set({ views: get().views.filter((v: View) => v.name !== name) }),
     }),
     {
       name: "sbx_filters",

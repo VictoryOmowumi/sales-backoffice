@@ -106,7 +106,7 @@ export function generateCustomerDetail(customerId: string): Customer {
   };
 }
 
-export function generateCustomerOrders(customerId: string, count: number = 20): OrderSummary[] {
+export function generateCustomerOrders(_customerId: string, count: number = 20): OrderSummary[] {
   const statuses = ["Pending", "Approved", "Shipped", "Delivered", "Invoiced", "Cancelled", "Returned"];
   
   return Array.from({ length: count }, () => ({
@@ -122,7 +122,7 @@ export function generateCustomerOrders(customerId: string, count: number = 20): 
   }));
 }
 
-export function generateCustomerPayments(customerId: string, count: number = 15): Payment[] {
+export function generateCustomerPayments(_customerId: string, count: number = 15): Payment[] {
   const methods = ["BankTransfer", "POS", "Cash", "Gateway"];
   const providers = ["Zenith", "Access", "GTB", "Paystack", "Flutterwave"];
   
@@ -144,7 +144,7 @@ export function generateCustomerPayments(customerId: string, count: number = 15)
   }));
 }
 
-export function generateCustomerReturns(customerId: string, count: number = 8): ReturnClaim[] {
+export function generateCustomerReturns(_customerId: string, count: number = 8): ReturnClaim[] {
   const statuses = ["Pending", "Approved", "Rejected", "InTransit", "Credited"];
   const reasons = ["Damaged", "Expired", "WrongItem", "Shortdated", "Other"];
   
@@ -162,7 +162,7 @@ export function generateCustomerReturns(customerId: string, count: number = 8): 
   }));
 }
 
-export function generateCustomerVisits(customerId: string, count: number = 12): Visit[] {
+export function generateCustomerVisits(_customerId: string, count: number = 12): Visit[] {
   const statuses = ["Planned", "Completed", "Missed", "Cancelled"];
   
   return Array.from({ length: count }, () => ({
@@ -180,7 +180,7 @@ export function generateCustomerVisits(customerId: string, count: number = 12): 
   }));
 }
 
-export function generateCustomerActivity(customerId: string, count: number = 25): ActivityItem[] {
+export function generateCustomerActivity(_customerId: string, count: number = 25): ActivityItem[] {
   const types = ["order", "payment", "claim", "credit", "note", "document"];
   
   return Array.from({ length: count }, () => ({

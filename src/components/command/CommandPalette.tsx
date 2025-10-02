@@ -149,7 +149,7 @@ export default function CommandPalette() {
             <>
               <CommandSeparator />
               <CommandGroup heading="Saved views">
-                {views.map((v) => (
+                {views.map((v: { name: string; filters: any }) => (
                   <CommandItem key={v.name} value={v.name} onSelect={() => { applyView(v.name); setOpen(false); }}>
                     <Tag className="mr-2 size-4" />
                     <span>{v.name}</span>
