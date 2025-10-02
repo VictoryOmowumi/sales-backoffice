@@ -1,0 +1,180 @@
+/* Tailwind v4 directives */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Self-hosted fonts (no layout shift, works offline) */
+@import "@fontsource-variable/urbanist/index.css"; /* 100–900 */
+@import "@fontsource/comfortaa/400.css";
+@import "@fontsource/comfortaa/600.css";
+@import "@fontsource/comfortaa/700.css";
+
+/* Dark selector helper */
+@custom-variant dark (&:is(.dark *));
+
+/* ===== Brand tokens ===== */
+:root {
+  /* Brand hex (from your palette) */
+  --brand-blue: #0367FC;       /* Vibrant Blue      */
+  --brand-lime: #D2F801;       /* Click Lime        */
+  --brand-white: #F1F1F1;      /* Click White       */
+  --brand-charcoal: #161616;   /* Black Charcoal    */
+
+  /* Semantic surfaces (light) */
+  --radius: 0.625rem;
+  --background: var(--brand-white);
+  --foreground: oklch(0.14 0 0);               /* near-black text */
+  --card: var(--brand-white);
+  --card-foreground: var(--foreground);
+  --popover: var(--brand-white);
+  --popover-foreground: var(--foreground);
+
+  /* Key brand roles */
+  --primary: var(--brand-blue);
+  --primary-foreground: var(--brand-white);
+  --secondary: oklch(0.96 0 0);                /* light gray chip */
+  --secondary-foreground: oklch(0.26 0 0);
+
+  --accent: var(--brand-lime);
+  --accent-foreground: oklch(0.2 0 0);
+
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+
+  --destructive: oklch(0.62 0.22 27.5);        /* accessible red */
+  --border: oklch(0.90 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: color-mix(in oklch, var(--brand-blue) 60%, white);
+
+  /* Charts (light) — use brand + neutrals */
+  --chart-1: var(--brand-blue);
+  --chart-2: oklch(0.68 0.17 162);             /* teal */
+  --chart-3: oklch(0.80 0.19 84);              /* yellow-green */
+  --chart-4: oklch(0.56 0.08 255);             /* indigo */
+  --chart-5: oklch(0.72 0.12 35);              /* orange */
+
+  /* Sidebar (light) */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.18 0 0);
+  --sidebar-primary: var(--brand-blue);
+  --sidebar-primary-foreground: var(--brand-white);
+  --sidebar-accent: color-mix(in oklch, var(--brand-blue) 7%, white);
+  --sidebar-accent-foreground: oklch(0.2 0 0);
+  --sidebar-border: oklch(0.90 0 0);
+  --sidebar-ring: var(--ring);
+}
+
+/* Dark theme */
+.dark {
+  --background: var(--brand-charcoal);
+  --foreground: oklch(0.98 0 0);
+  --card: color-mix(in oklch, var(--brand-charcoal) 92%, white 8%);
+  --card-foreground: var(--foreground);
+  --popover: color-mix(in oklch, var(--brand-charcoal) 92%, white 8%);
+  --popover-foreground: var(--foreground);
+
+  --primary: var(--brand-blue);
+  --primary-foreground: var(--brand-white);
+
+  --secondary: color-mix(in oklch, var(--brand-charcoal) 80%, white 20%);
+  --secondary-foreground: oklch(0.98 0 0);
+
+  --accent: color-mix(in oklch, var(--brand-lime) 70%, black 30%);
+  --accent-foreground: oklch(0.16 0 0);
+
+  --muted: color-mix(in oklch, var(--brand-charcoal) 85%, white 15%);
+  --muted-foreground: oklch(0.70 0 0);
+
+  --destructive: oklch(0.70 0.20 22);
+  --border: oklch(1 0 0 / 10%);
+  --input:  oklch(1 0 0 / 14%);
+  --ring: color-mix(in oklch, var(--brand-blue) 50%, black);
+
+  --chart-1: var(--brand-blue);
+  --chart-2: oklch(0.72 0.18 170);
+  --chart-3: var(--brand-lime);
+  --chart-4: oklch(0.62 0.20 300);
+  --chart-5: oklch(0.66 0.23 25);
+
+  --sidebar: color-mix(in oklch, var(--brand-charcoal) 92%, black 8%);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: var(--brand-blue);
+  --sidebar-primary-foreground: var(--brand-white);
+  --sidebar-accent: color-mix(in oklch, var(--brand-blue) 15%, var(--brand-charcoal));
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: var(--ring);
+}
+
+/* Map tokens to Tailwind variables + shadcn/ui */
+@theme inline {
+  /* radii */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* fonts */
+  --font-sans: "Urbanist Variable", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  --font-display: "Comfortaa", ui-rounded, "Urbanist Variable", system-ui, sans-serif;
+
+  /* color aliases (Tailwind tokens) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* charts & sidebar */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Tailwind base glue */
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { font-family: var(--font-sans); }
+  body { @apply bg-background text-foreground antialiased; }
+  h1,h2,h3,.font-display { font-family: var(--font-display); }
+}
+
+/* no scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
