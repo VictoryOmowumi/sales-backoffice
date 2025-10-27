@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -84,6 +85,7 @@ function Header({ title, subtitle }: { title: string; subtitle?: string }) {
 }
 
 export default function PaymentOverview() {
+  const navigate = useNavigate();
   const { transactions, analytics, kpis } = useMemo(() => seedPaymentsData(), []);
   
   // Filter states
@@ -351,7 +353,11 @@ export default function PaymentOverview() {
                       </td>
                       <td className="p-4 align-middle">
                         <div className="flex items-center gap-2">
-                          <Button variant="ghost" size="sm">
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => navigate(`/payments/${transaction.id}`)}
+                          >
                             <Eye className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="sm">

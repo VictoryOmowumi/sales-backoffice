@@ -9,12 +9,16 @@ import DirectOverview from "@/pages/DirectSales/Overview";
 import DirectUOM from "@/pages/DirectSales/UOMComparison";
 import DirectRetention from "@/pages/DirectSales/Retention";
 import PaymentOverview from "@/pages/Payments/Overview"
+import PaymentDetail from "@/pages/Payments/PaymentDetail"
 import CustomersOverview from "@/pages/Customers/Overview";
 import CustomerDirectory from "@/pages/Customers/Directory";
 import CustomerDetail from "@/pages/Customers/CustomerDetail";
 import Orders from "@/pages/Orders";
 import OrdersAnalytics from "@/pages/Orders/Analytics";
 import OrderDetail from "@/pages/Orders/OrderDetail";
+import RoutesOverview from "@/pages/Routes/Overview";
+import RouteDetail from "@/pages/Routes/RouteDetail";
+import RoutesAnalytics from "@/pages/Routes/Analytics";
 import Targets from "@/pages/Targets";
 import CreateTargets from "@/pages/Targets/Create";
 import Login from "@/pages/Login";
@@ -49,6 +53,7 @@ export const router = createBrowserRouter([
           { path: "direct/retention", element: <DirectRetention /> },
 
           { path: "payments/overview", element: <PaymentOverview /> },
+          { path: "payments/:paymentId", element: <PaymentDetail /> },
           
           { path: "customers/overview", element: <CustomersOverview /> },
           { path: "customers/directory", element: <CustomerDirectory /> },
@@ -56,6 +61,9 @@ export const router = createBrowserRouter([
           { path: "orders/overview", element: <Orders /> },
           { path: "orders/analytics", element: <OrdersAnalytics /> },
           { path: "orders/:orderId", element: <OrderDetail /> },
+          { path: "routes/overview", element: <RoutesOverview /> },
+          { path: "routes/analytics", element: <RoutesAnalytics /> },
+          { path: "routes/:routeId", element: <RouteDetail /> },
           { path: "targets/overview", element: <Targets /> },
           { path: "targets/create", element: <CreateTargets /> },
           { path: "targets/drafts", element: <div className="p-6 text-sm text-muted-foreground">Drafts page (coming soon)</div> },

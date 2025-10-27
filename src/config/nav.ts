@@ -1,7 +1,7 @@
 import {
     LayoutDashboard, BarChartBig, PieChart,  Users, ShoppingCart,
     Target, Blocks, CircleHelp, BadgeCent,
-    Megaphone
+    Megaphone, Route
   } from "lucide-react";
   import type { ComponentType } from "react";
 import type { UserRole } from "@/context/AuthContext";
@@ -47,6 +47,14 @@ import type { UserRole } from "@/context/AuthContext";
       { label: "Overview", to: "/orders/overview" },
       { label: "Analytics", to: "/orders/analytics" },
     ] },
+    {
+      label: "Routes",
+      icon: Route,
+      children: [
+        { label: "Overview", to: "/routes/overview" },
+        { label: "Analytics", to: "/routes/analytics", roles: ["gtm", "executive"] },
+      ],
+    },
     {
       label: "Targets",
       icon: Target,
