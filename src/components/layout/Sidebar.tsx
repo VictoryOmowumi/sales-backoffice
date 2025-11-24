@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSidebar } from "@/store/sidebar";
 import { useFullscreen } from "@/hooks/useFullscreen";
 import { Badge } from "@/components/ui/badge";
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {  ChevronDown, Bookmark, BookmarkCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -34,7 +34,16 @@ function ItemLink({ item, collapsed }: { item: NavItem; collapsed: boolean }) {
       aria-current="page"
       title={collapsed ? item.label : undefined}
     >
-      {Icon && <Icon className="size-5 shrink-0" strokeWidth={1.5} />}
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            {Icon && <Icon className="size-5 shrink-0" strokeWidth={1.5} />}
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={10}>
+            <p>{item.label}</p>
+          </TooltipContent>
+        </Tooltip>
+        </TooltipProvider>
       {!collapsed && <span className="truncate">{item.label}</span>}
       {item.badge && !collapsed && (
         <Badge variant="secondary" className="ml-auto h-5 px-1.5 text-xs">
@@ -106,7 +115,16 @@ function Group({
         onClick={() => setOpen((o) => !o)}
         title={collapsed ? item.label : undefined}
       >
-        {Icon && <Icon className="size-5 shrink-0" strokeWidth={1.5} />}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              {Icon && <Icon className="size-5 shrink-0" strokeWidth={1.5} />}
+            </TooltipTrigger>
+            <TooltipContent side="right" sideOffset={10}>
+              <p>{item.label}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         {!collapsed && <span className="flex-1 text-left">{item.label}</span>}
         {!collapsed && (
           <ChevronDown

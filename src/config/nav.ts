@@ -1,7 +1,7 @@
 import {
     LayoutDashboard, BarChartBig, PieChart,  Users, ShoppingCart,
     Target, Blocks, CircleHelp, BadgeCent,
-    Megaphone, Route
+    Megaphone, Route, UserCheck
   } from "lucide-react";
   import type { ComponentType } from "react";
 import type { UserRole } from "@/context/AuthContext";
@@ -47,6 +47,16 @@ import type { UserRole } from "@/context/AuthContext";
       { label: "Overview", to: "/orders/overview" },
       { label: "Analytics", to: "/orders/analytics" },
     ] },
+    {
+      label: "Sales Team",
+      icon: UserCheck,
+      children: [
+        { label: "Overview", to: "/sales-team/overview" },
+        { label: "Directory", to: "/sales-team/directory" },
+        { label: "Onboard", to: "/sales-team/onboard", roles: ["executive", "gtm"] },
+        { label: "Mappings", to: "/sales-team/mappings", roles: ["executive", "gtm"] },
+      ],
+    },
     {
       label: "Routes",
       icon: Route,

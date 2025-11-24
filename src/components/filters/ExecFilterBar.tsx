@@ -15,6 +15,7 @@ import { format, parseISO } from "date-fns";
 import { DateRangePicker, type DateRange } from "@/components/ui/date-range-picker";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { ORG_CHANNEL_OPTIONS, ORG_REGION_OPTIONS } from "@/config/org";
 
 export default function ExecFilterBar() {
   const { mode, setMode } = useCompare();
@@ -73,22 +74,9 @@ export default function ExecFilterBar() {
             </SelectTrigger>
             <SelectContent className="max-h-64 rounded-xl">
               <SelectItem value="All">Regions</SelectItem>
-              {(
-                [
-                  
-                  "Abuja",
-                  "Kano",
-                  "Kaduna",
-                  "Aba",
-                  "Enugu",
-                  "Benin",
-                  "Ibadan",
-                  "Ilorin",
-                  "Ikeja",
-                ] as const
-              ).map((r) => (
-                <SelectItem key={r} value={r} className="rounded-lg">
-                  {r}
+              {ORG_REGION_OPTIONS.map((region) => (
+                <SelectItem key={region.id} value={region.label} className="rounded-lg">
+                  {region.label}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -104,17 +92,9 @@ export default function ExecFilterBar() {
             </SelectTrigger>
             <SelectContent className="rounded-xl">
               <SelectItem value="All">Channels</SelectItem>
-              {(
-                [
-                
-                  "Modern Trade",
-                  "General Trade",
-                  "HORECA",
-                  "E-Commerce",
-                ] as const
-              ).map((c) => (
-                <SelectItem key={c} value={c} className="rounded-lg">
-                  {c}
+              {ORG_CHANNEL_OPTIONS.map((channel) => (
+                <SelectItem key={channel} value={channel} className="rounded-lg">
+                  {channel}
                 </SelectItem>
               ))}
             </SelectContent>

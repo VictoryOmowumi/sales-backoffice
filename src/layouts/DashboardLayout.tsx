@@ -12,7 +12,7 @@ export default function DashboardLayout() {
       <div className="flex-1 flex flex-col   m-1.5 rounded-2xl border border-white dark:border-neutral-800 shadow-lg !bg-[#F9f9f9] dark:!bg-[#111111]">
         <RouteTracker />
         <Topbar />
-        <main className="flex-1 p-6 overflow-x-clip">
+        <main className="flex-1 p-6 overflow-x-clip container mx-auto">
           <ScrollArea className="h-full">
           <Outlet />
         </ScrollArea>

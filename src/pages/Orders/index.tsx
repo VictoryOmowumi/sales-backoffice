@@ -487,52 +487,52 @@ function OrderRow({ order, onAction }: { order: OrderWithDetails; onAction: (ord
     <tr className="border-b hover:bg-muted/50 transition-colors">
       <td className="p-3">
         <div className="font-medium">{order.order_no}</div>
-        <div className="text-sm text-muted-foreground">{order.customer.code}</div>
+        <div className="text-xs text-muted-foreground">{order.customer.code}</div>
       </td>
       <td className="p-3">
         <div className="font-medium">{order.customer.name}</div>
-        <div className="text-sm text-muted-foreground flex items-center gap-1">
+        <div className="text-xs text-muted-foreground flex items-center gap-1">
           <MapPin className="h-3 w-3" />
           {order.customer.region}
         </div>
       </td>
       <td className="p-3">
-        <Badge variant="outline">{order.customer.channel}</Badge>
+        <Badge variant="outline" className="text-xs">{order.customer.channel}</Badge>
       </td>
       <td className="p-3">
         <div className="flex items-center gap-2">
-          <User className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm">{order.salesRep.name}</span>
+          <User className="h-3 w-3 text-muted-foreground" />
+          <span className="text-xs">{order.salesRep.name}</span>
         </div>
       </td>
       <td className="p-3">
-        <div className="text-sm">
+        <div className="text-xs">
           {new Date(order.ordered_at).toLocaleDateString()}
         </div>
         {order.required_at && (
-          <div className="text-xs text-muted-foreground">
+          <div className="text-xs text-muted-foreground italic">
             Required: {new Date(order.required_at).toLocaleDateString()}
           </div>
         )}
       </td>
       <td className="p-3">
-        <div className="font-medium">{fmtMoney(order.total_ngn)}</div>
-        <div className="text-sm text-muted-foreground">
+        <div className="font-medium text-sm">{fmtMoney(order.total_ngn)}</div>
+        <div className="text-xs text-muted-foreground">
           {order.lines.length} items
         </div>
       </td>
       <td className="">
-        <Badge className={cn("text-xs", statusColors[order.status])}>
+        <Badge className={cn("text-xs font-normal", statusColors[order.status])}>
           {order.status.replace('_', ' ')}
         </Badge>
       </td>
       <td className="">
-        <Badge className={cn("text-xs", fulfillmentColors[order.fulfillment_status])}>
+        <Badge className={cn("text-xs font-normal", fulfillmentColors[order.fulfillment_status])}>
           {order.fulfillment_status.replace('_', ' ')}
         </Badge>
       </td>
       <td className="p-3">
-        <Badge className={cn("text-xs", paymentColors[order.payment_status])}>
+        <Badge className={cn("text-xs font-normal", paymentColors[order.payment_status])}>
           {order.payment_status.replace('_', ' ')}
         </Badge>
       </td>
@@ -540,7 +540,7 @@ function OrderRow({ order, onAction }: { order: OrderWithDetails; onAction: (ord
         <div className="flex items-center gap-1">
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             onClick={() => onAction(order.id, "View")}
           >
             <Eye className="h-4 w-4" />

@@ -32,6 +32,7 @@ export type OrderLine = {
   sku_id: ID;
   uom: UOM;
   qty: number;           // in chosen UOM (usually cases)
+  qty_fulfilled: number; // quantity already fulfilled
   price_ngn: number;     // per UOM
   line_value_ngn: number;
   discount_ngn?: number;

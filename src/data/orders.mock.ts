@@ -43,7 +43,7 @@ function statusFlow(): { status: Order["status"]; fulfillment: Order["fulfillmen
   const mapFul = (x: typeof f.f) => x as Order["fulfillment_status"];
   const mapPay = (x: typeof f.p) => x as Order["payment_status"];
 
-  return { status: mapStatus(f.s), fulfillment: mapFul(f.f), payment: mapPay(f.p), events: f.e as any };
+  return { status: mapStatus(f.s), fulfillment: mapFul(f.f), payment: mapPay(f.p), events: f.e as unknown as OrderEvent["kind"][] };
 }
 
 // Generate reference data
@@ -161,6 +161,9 @@ export function seedOrders(opts: {
         sku_id: sku.id,
         uom,
         qty,
+        qty_fulfilled: flow.fulfillment === "delivered" ? qty : 
+                       flow.fulfillment === "partially_fulfilled" ? Math.floor(qty * faker.number.float({ min: 0.3, max: 0.7 })) :
+                       flow.fulfillment === "shipped" ? Math.floor(qty * faker.number.float({ min: 0.5, max: 0.9 })) : 0,
         price_ngn: price,
         line_value_ngn: lineGross - lineDiscount,
         discount_ngn: lineDiscount || undefined,

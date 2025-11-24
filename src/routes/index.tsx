@@ -16,9 +16,17 @@ import CustomerDetail from "@/pages/Customers/CustomerDetail";
 import Orders from "@/pages/Orders";
 import OrdersAnalytics from "@/pages/Orders/Analytics";
 import OrderDetail from "@/pages/Orders/OrderDetail";
-import RoutesOverview from "@/pages/Routes/Overview";
-import RouteDetail from "@/pages/Routes/RouteDetail";
-import RoutesAnalytics from "@/pages/Routes/Analytics";
+import RoutesOverview from "@/pages/SalesRoutes/Overview";
+import RouteDetail from "@/pages/SalesRoutes/RouteDetail";
+import RoutesAnalytics from "@/pages/SalesRoutes/Analytics";
+import {
+  SalesTeamOverviewPage,
+  SalesTeamDirectoryPage,
+  SalesTeamMemberProfilePage,
+  SalesTeamOnboardPage,
+  SalesTeamMappingsPage
+} from "@/pages/SalesTeam";
+import NotFound from "@/pages/NotFound";
 import Targets from "@/pages/Targets";
 import CreateTargets from "@/pages/Targets/Create";
 import Login from "@/pages/Login";
@@ -61,6 +69,17 @@ export const router = createBrowserRouter([
           { path: "orders/overview", element: <Orders /> },
           { path: "orders/analytics", element: <OrdersAnalytics /> },
           { path: "orders/:orderId", element: <OrderDetail /> },
+          {
+            path: "sales-team",
+            children: [
+              { index: true, element: <SalesTeamOverviewPage /> },
+              { path: "overview", element: <SalesTeamOverviewPage /> },
+              { path: "directory", element: <SalesTeamDirectoryPage /> },
+              { path: "onboard", element: <SalesTeamOnboardPage /> },
+              { path: "mappings", element: <SalesTeamMappingsPage /> },
+              { path: "reps/:repId", element: <SalesTeamMemberProfilePage /> },
+            ],
+          },
           { path: "routes/overview", element: <RoutesOverview /> },
           { path: "routes/analytics", element: <RoutesAnalytics /> },
           { path: "routes/:routeId", element: <RouteDetail /> },
@@ -73,7 +92,8 @@ export const router = createBrowserRouter([
           {path: "campaigns", element: <Campaigns />},
           {path: "promotions", element: <Promotions />},
           {path: "resources", element: <Resources />},
-          {path: "help", element: <Help />}
+          {path: "help", element: <Help />},
+          { path: "*", element: <NotFound /> },
 
         ],
       },

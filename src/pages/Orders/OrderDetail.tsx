@@ -7,7 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import {
   ArrowLeft,
-  Edit,
   CheckCircle,
   XCircle,
   Package,
@@ -34,8 +33,7 @@ import {
   Copy,
   ExternalLink,
   Zap,
-  Target,
-  Activity,
+  Target
 } from "lucide-react";
 import { ordersWithDetails } from "@/data/orders.mock";
 import { useToast } from "@/hooks/use-toast";
@@ -230,13 +228,6 @@ export default function OrderDetail() {
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Download
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => handleAction("Edit")}
-                >
-                  <Edit className="h-4 w-4 mr-2" />
-                  Edit Order
                 </Button>
               </div>
             </div>
@@ -475,29 +466,16 @@ export default function OrderDetail() {
                             </div>
                           </div>
                           
-                          <div className="mt-3 flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="flex items-center gap-2">
-                                <div className="h-1 w-16 bg-muted rounded-full overflow-hidden">
-                                  <div className="h-full w-3/4 bg-muted-foreground/30 rounded-full"></div>
-                                </div>
-                                <span className="text-xs text-muted-foreground">75% Fulfilled</span>
+                              <div className="flex items-center gap-2 w-1/2">
+                                {/* progress bar */}
+                                <Progress value={line.qty_fulfilled / line.qty * 100} className="h-1 w-full" />
+                                <span className="text-xs text-muted-foreground text-nowrap">
+                                  {line.qty_fulfilled} / {line.qty} {line.uom}
+                                </span>
                               </div>
-                              <Badge variant="outline" className="text-xs border-border">
-                                <Activity className="h-3 w-3 mr-1" />
-                                Processing
-                              </Badge>
                             </div>
-                            
-                            <div className="flex items-center gap-1">
-                              <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground">
-                                <Copy className="h-3 w-3" />
-                              </Button>
-                              <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground">
-                                <ExternalLink className="h-3 w-3" />
-                              </Button>
-                            </div>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -522,48 +500,46 @@ export default function OrderDetail() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
-                <div className="space-y-4">
+                <div className="">
                   {order.events.map((event, index) => {
                     const EventIcon = eventIcons[event.kind as keyof typeof eventIcons];
                     const eventColor = eventColors[event.kind as keyof typeof eventColors];
                     const isLast = index === order.events.length - 1;
 
                     return (
-                      <div key={event.id} className="relative">
-                        <div className="flex items-start gap-4">
-                          <div className="flex flex-col items-center">
-                            <div className={cn(
-                              "p-2 rounded-lg border border-border bg-card",
-                              eventColor
-                            )}>
-                              <EventIcon className="h-4 w-4" />
-                            </div>
-                            {!isLast && (
-                              <div className="w-px h-6 bg-border mt-2"></div>
-                            )}
+                      <div key={event.id} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className={cn(
+                            "p-2 rounded-lg border border-border bg-card shrink-0",
+                            eventColor
+                          )}>
+                            <EventIcon className="h-4 w-4" />
                           </div>
-                          
-                          <div className="flex-1 pb-4">
-                            <div className="bg-muted rounded-lg p-4 border border-border">
-                              <div className="flex items-center justify-between mb-2">
-                                <h4 className="font-semibold text-foreground capitalize">
-                                  {event.kind.replace("_", " ")}
-                                </h4>
-                                <div className="flex items-center gap-2">
-                                  <Badge variant="outline" className="text-xs border-border">
-                                    {new Date(event.at).toLocaleDateString()}
-                                  </Badge>
-                                  <span className="text-xs text-muted-foreground">
-                                    {new Date(event.at).toLocaleTimeString()}
-                                  </span>
-                                </div>
+                          {!isLast && (
+                            <div className="w-px h-full bg-border"></div>
+                          )}
+                        </div>
+                        
+                        <div className="flex-1 pb-4">
+                          <div className="bg-muted rounded-lg p-4 border border-border">
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-semibold text-foreground capitalize">
+                                {event.kind.replace("_", " ")}
+                              </h4>
+                              <div className="flex items-center gap-2">
+                                <Badge variant="outline" className="text-xs border-border">
+                                  {new Date(event.at).toLocaleDateString()}
+                                </Badge>
+                                <span className="text-xs text-muted-foreground">
+                                  {new Date(event.at).toLocaleTimeString()}
+                                </span>
                               </div>
-                              {event.note && (
-                                <p className="text-sm text-foreground bg-card p-3 rounded border border-border">
-                                  {event.note}
-                                </p>
-                              )}
                             </div>
+                            {event.note && (
+                              <p className="text-sm text-foreground bg-card p-3 rounded border border-border">
+                                {event.note}
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>

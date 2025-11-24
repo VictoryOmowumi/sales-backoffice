@@ -189,13 +189,13 @@ export type RegionName = keyof typeof REGIONS_AND_TERRITORIES;
 export type TerritoryName = typeof REGIONS_AND_TERRITORIES[RegionName]["territories"][number];
 
 // Helper functions
-export function getTerritoriesForRegion(region: RegionName): string[] {
+export function getTerritoriesForRegion(region: RegionName): readonly string[] {
   return REGIONS_AND_TERRITORIES[region].territories;
 }
 
 export function getRegionForTerritory(territory: string): RegionName | null {
   for (const [regionName, regionData] of Object.entries(REGIONS_AND_TERRITORIES)) {
-    if (regionData.territories.includes(territory)) {
+    if ((regionData.territories as readonly string[]).includes(territory)) {
       return regionName as RegionName;
     }
   }

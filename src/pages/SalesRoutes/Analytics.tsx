@@ -4,19 +4,14 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import {
   BarChart3,
-  TrendingUp,
   MapPin,
   Users,
   Target,
   Activity,
-  Clock,
-  Navigation,
-  CheckCircle,
-  AlertCircle
+  Navigation
 } from "lucide-react";
 import { seedRoutesData } from "@/data/routes.mock";
 import { cn } from "@/lib/utils";
-import { fmtMoney, fmtNum } from "@/lib/format";
 
 export default function RoutesAnalytics() {
   const { routes, visits, analytics } = useMemo(() => seedRoutesData(), []);

@@ -1,10 +1,11 @@
 import { create } from "zustand";
+import type { OrgChannelName, OrgRegionName } from "@/config/org";
 
 export type ExecFilters = {
   from: string;  // YYYY-MM (inclusive)
   to: string;    // YYYY-MM (inclusive)
-  region: "All" | "Abuja" | "Kano" | "Kaduna" | "Aba" | "Enugu" | "Benin" | "Ibadan" | "Ilorin" | "Ikeja";
-  channel: "All" | "Modern Trade" | "General Trade" | "HORECA" | "E-Commerce";
+  region: "All" | OrgRegionName;
+  channel: "All" | OrgChannelName;
   set: <K extends keyof ExecFilters>(k: K, v: ExecFilters[K]) => void;
 };
 
