@@ -71,6 +71,7 @@ import type { UserRole } from "@/context/AuthContext";
       children: [
         { label: "Overview", to: "/targets/overview" },
         { label: "Create Targets", to: "/targets/create" },
+        { label: "Create National Targets", to: "/targets/national/create" },
         { label: "Drafts", to: "/targets/drafts" },
         { label: "Awaiting Approval", to: "/targets/awaiting-approval" },
         { label: "History", to: "/targets/history" },

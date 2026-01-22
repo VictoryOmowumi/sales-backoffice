@@ -1,3 +1,4 @@
+// src/config/regions.ts
 // Nigerian regions and their territories
 export const REGIONS_AND_TERRITORIES = {
   "Abuja": {

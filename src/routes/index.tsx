@@ -35,6 +35,7 @@ import Promotions from "@/pages/Promotions";
 import PerformanceTab from "@/pages/DirectSales/tabs/PerformanceTabs";
 import Resources from "@/pages/Resources";
 import Help from "@/pages/Help";
+
 export const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   {
