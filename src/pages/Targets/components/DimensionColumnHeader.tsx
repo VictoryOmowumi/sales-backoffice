@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { X } from "lucide-react";
-import type { SKU } from "@/domain/targets";
 import type { TargetDimensionColumn } from "../hooks/useNationalTargetGrid";
 import { ORG_CHANNEL_OPTIONS } from "@/config/org";
 import { targetsData } from "@/data/targets.mock";
